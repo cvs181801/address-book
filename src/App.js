@@ -15,17 +15,17 @@ function App() {
       })
     }
     
-    // function handleSubmit(event) {
-    //   const contactsData = [];
-    //   contactsData.push(firstName, lastName)
+    function handleSubmit(event) {
+      event.preventDefault();
+      setContactsData(prevContactData => [...prevContactData, inputData])
       
-    // }
+    }
 
-    console.log(inputData)
+    const contacts = contactsData.map(contact => <h2 key={contact.firstName}>{contact.firstName} {contact.lastName}</h2>)
     
     return (
         <>
-            <form> {/*onSubmit={handleSubmit}>*/}
+            <form onSubmit={handleSubmit}>
                 <input 
                     placeholder="First Name"
                     name="firstName" 
@@ -41,7 +41,7 @@ function App() {
                 <br />
                 <button>Add contact</button>
             </form>
-            {/*{contacts}*/}
+            {contacts}
         </>
     )
 }
