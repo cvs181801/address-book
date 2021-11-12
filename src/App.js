@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [inputData, setInputData] = useState({firstName: "", lastName: ""})
+    const [contactsData, setContactsData] = useState([])
+    
+    function handleChange(event) {
+     const {name, value} = event.target
+      setInputData(prevInputData => {
+        return {
+          ...prevInputData,
+          [name]: value
+        }
+      })
+    }
+    
+    // function handleSubmit(event) {
+    //   const contactsData = [];
+    //   contactsData.push(firstName, lastName)
+      
+    // }
+
+    console.log(inputData)
+    
+    return (
+        <>
+            <form> {/*onSubmit={handleSubmit}>*/}
+                <input 
+                    placeholder="First Name"
+                    name="firstName" 
+                    value={inputData.firstName}
+                    onChange={handleChange}
+                />
+                <input 
+                    placeholder="Last Name"
+                    name="lastName" 
+                    value={inputData.lastName}
+                    onChange={handleChange}
+                />
+                <br />
+                <button>Add contact</button>
+            </form>
+            {/*{contacts}*/}
+        </>
+    )
 }
 
-export default App;
+export default App
